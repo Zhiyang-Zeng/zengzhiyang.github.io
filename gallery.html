@@ -109,21 +109,23 @@ body {
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
+  gap: 40px;              /* ⬅ increase spacing between figures */
+  margin-top: 20px;       /* ⬅ space from top */
 }
 
 .gallery-item img {
   width: 100%;
-  height: auto;       /* keep full image */
+  height: auto;
   object-fit: contain;
   border-radius: 8px;
+
+  margin-bottom: 12px;   /* ⬅ space below image */
 }
 
 .gallery-title {
   font-weight: bold;
-  margin-top: 8px;
+  margin-bottom: 6px;    /* ⬅ space below title */
 }
-
 .gallery-desc {
   font-size: 14px;
   color: #555;
