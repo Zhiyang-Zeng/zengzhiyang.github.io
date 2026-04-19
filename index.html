@@ -32,23 +32,35 @@ body {
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid #ddd;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 5%;
+
+  padding: 12px 4%;
   z-index: 1000;
-  flex-wrap: nowrap;
 }
 
+/* allow shrinking properly */
+.topbar-left {
+  font-size: 18px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* KEY FIX */
 .topbar-right {
-  white-space: nowrap;
+  display: flex;
+  flex-wrap: wrap;      /* allow wrapping instead of hiding */
+  justify-content: flex-end;
 }
 
+/* slightly tighter spacing */
 .topbar-right a {
-  margin-left: 14px;
+  margin-left: 12px;
   text-decoration: none;
   color: #1a5fb4;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 /* ===== BANNER CONTAINER ===== */
@@ -145,10 +157,10 @@ Email: <a href="mailto:zhiyang.zeng@mpsd.mpg.de">zhiyang.zeng@mpsd.mpg.de</a>
 
 <h2>Research Interests</h2>
 <ul>
-  <li>Light-induced chirality</li>
-  <li>Ferroaxial order</li>
-  <li>Ultrafast pump–probe spectroscopy</li>
-  <li>Non-equilibrium phases in solids</li>
+  <li>Ultrafast dynamics</li>
+  <li>Light–matter interactions</li>
+  <li>Light-induced phase transitions</li>
+  <li>Emergent phenomena in condensed matter systems</li>
 </ul>
 
 <h2>Education</h2>
