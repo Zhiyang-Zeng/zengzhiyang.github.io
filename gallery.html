@@ -1,57 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Gallery - Zhiyang Zeng</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 40px auto;
-      line-height: 1.6;
-      color: #222;
-    }
-    nav {
-      margin-bottom: 20px;
-      font-size: 18px;
-    }
-    nav a {
-      margin-right: 15px;
-      text-decoration: none;
-      color: #1a5fb4;
-    }
-    img.banner {
-      width: 100%;
-      height: 350px;
-      object-fit: cover;
-      margin-bottom: 20px;
-    }
-    .gallery img {
-      width: 100%;
-      max-width: 280px;
-      margin: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gallery - Zhiyang Zeng</title>
+
+<style>
+
+/* ===== BODY ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding-top: 70px;
+  line-height: 1.7;
+  color: #222;
+}
+
+/* ===== HEADER ===== */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #ddd;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 10%;
+  z-index: 1000;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ☰ hidden on desktop */
+.menu-icon {
+  display: none;
+  font-size: 22px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+/* MENU */
+.topbar-right {
+  display: flex;
+}
+
+.topbar-right a {
+  margin-left: 14px;
+  text-decoration: none;
+  color: #1a5fb4;
+  font-size: 15px;
+}
+
+.topbar-right a:hover {
+  text-decoration: underline;
+}
+
+/* active page */
+.active {
+  font-weight: bold;
+}
+
+/* ===== BANNER ===== */
+.banner-container {
+  position: relative;
+  width: 100vw;
+  height: 300px;
+  overflow: hidden;
+  margin-left: calc(-50vw + 50%);
+  margin-bottom: 30px;
+}
+
+.banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+}
+
+/* ===== CONTENT ===== */
+.content {
+  margin: 0 10%;
+}
+
+/* ===== GALLERY ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 800px) {
+
+  .content {
+    margin: 0 5%;
+  }
+
+  .banner-container {
+    height: 200px;
+  }
+
+  .banner-text {
+    font-size: 28px;
+  }
+
+  /* show ☰ */
+  .menu-icon {
+    display: inline;
+  }
+
+  /* hide menu */
+  .topbar-right {
+    display: none;
+    flex-direction: column;
+
+    position: absolute;
+    top: 60px;
+    left: 5%;
+
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 6px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .topbar-right a {
+    margin: 8px 0;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="research.html">Research</a>
-  <a href="publications.html">Publications</a>
-  <a href="gallery.html">Gallery</a>
-</nav>
+<!-- HEADER -->
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="menu-icon" onclick="toggleMenu()">☰</span>
+    Zhiyang Zeng
+  </div>
 
-<img src="banner-gallery.jpg" class="banner">
+  <div class="topbar-right" id="menu">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html">Publications</a>
+    <a href="gallery.html" class="active">Gallery</a>
+  </div>
+</header>
+
+<!-- BANNER -->
+<div class="banner-container">
+  <img src="Zhiyang_Zeng_Gallery_V1" class="banner">
+  <div class="banner-text">Gallery</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
 
 <h1>Gallery</h1>
 
 <div class="gallery">
-  <img src="image1.jpg">
-  <img src="image2.jpg">
-  <img src="image3.jpg">
+  <img src="image1.jpg" alt="Image 1">
+  <img src="image2.jpg" alt="Image 2">
+  <img src="image3.jpg" alt="Image 3">
 </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  menu.style.display =
+    (menu.style.display === "flex") ? "none" : "flex";
+}
+</script>
 
 </body>
 </html>
