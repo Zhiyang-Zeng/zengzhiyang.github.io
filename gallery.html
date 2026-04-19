@@ -108,19 +108,25 @@ body {
 /* ===== GALLERY ===== */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
 }
 
-.gallery img {
+.gallery-item img {
   width: 100%;
-  border-radius: 8px;
+  height: 220px;
   object-fit: cover;
-  transition: transform 0.2s ease;
+  border-radius: 8px;
 }
 
-.gallery img:hover {
-  transform: scale(1.03);
+.gallery-title {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.gallery-desc {
+  font-size: 14px;
+  color: #555;
 }
 
 /* ===== MOBILE ===== */
@@ -163,6 +169,11 @@ body {
   .topbar-right a {
     margin: 8px 0;
   }
+
+  /* stack gallery */
+  .gallery {
+    grid-template-columns: 1fr;
+  }
 }
 
 </style>
@@ -197,9 +208,39 @@ body {
 <h1>Gallery</h1>
 
 <div class="gallery">
-  <img src="image1.jpg" alt="Image 1">
-  <img src="image2.jpg" alt="Image 2">
-  <img src="image3.jpg" alt="Image 3">
+
+  <div class="gallery-item">
+    <img src="image1.jpg" alt="Experiment Setup">
+    <div class="gallery-title">Ultrafast Experiment Setup</div>
+    <div class="gallery-desc">
+      Pump–probe optical setup for studying light-induced phase transitions.
+    </div>
+  </div>
+
+  <div class="gallery-item">
+    <img src="image2.jpg" alt="Crystal Sample">
+    <div class="gallery-title">Crystal Sample</div>
+    <div class="gallery-desc">
+      Single crystal used in ferroaxial and chirality experiments.
+    </div>
+  </div>
+
+  <div class="gallery-item">
+    <img src="image3.jpg" alt="Conference">
+    <div class="gallery-title">Conference Presentation</div>
+    <div class="gallery-desc">
+      Presenting recent research on ultrafast light–matter interactions.
+    </div>
+  </div>
+
+  <div class="gallery-item">
+    <img src="image4.jpg" alt="Beamtime">
+    <div class="gallery-title">Beamtime</div>
+    <div class="gallery-desc">
+      Experiments performed at large-scale scattering facilities.
+    </div>
+  </div>
+
 </div>
 
 </div>
