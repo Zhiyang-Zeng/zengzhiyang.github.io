@@ -191,34 +191,21 @@ body {
     display: inline;
   }
 
-  .topbar-right {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 5%;
-    background: white;
-    border: 1px solid #ddd;
-    padding: 10px 15px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
+.topbar-right {
+  display: none;
+  flex-direction: column;
 
-  .topbar-right {
-    display: none;
-    flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 5%;
 
-    position: absolute;
-    top: 60px;
-    left: 5%;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 6px;
 
-    background: white;
-    border: 1px solid #ddd;
-    padding: 10px 15px;
-    border-radius: 6px;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
   .topbar-right a {
     margin: 8px 0;
@@ -347,6 +334,17 @@ function resizeMap() {
 window.addEventListener("load", resizeMap);
 window.addEventListener("resize", resizeMap);
 </script>
+  
+<script>
+function toggleMenu() {
+  var menu = document.getElementById("menu");
 
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+  }
+}
+</script>
 </body>
 </html>
