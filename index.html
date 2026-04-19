@@ -23,6 +23,9 @@ body {
   top: 0;
   left: 0;
   width: 100%;
+
+  box-sizing: border-box;   /* 🔥 THIS FIXES YOUR PROBLEM */
+
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid #ddd;
@@ -31,7 +34,7 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  padding: 12px 6%;
+  padding: 12px 10%;
   z-index: 1000;
 }
 
@@ -232,13 +235,17 @@ a:hover {
 
 <h1>About</h1>
 
-<p>
-My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
-<a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
-Prof. Andrea Cavalleri
-</a> 
-at the Max Planck Institute for the Structure and Dynamics of Matter.
-</p>
+      <p>
+        My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
+        <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
+        Prof. Andrea Cavalleri
+        </a> 
+        at the Max Planck Institute for the Structure and Dynamics of Matter. 
+        My research focuses on ultrafast light–matter interactions, aiming to uncover 
+        novel pathways for controlling structural and electronic orders in quantum materials. 
+        I use table-top ultrafast optical techniques together with scattering experiments 
+        at large-scale facilities to explore and engineer emergent functionalities.
+      </p>
 
 <p>
 Email: <a href="mailto:zhiyang.zeng@mpsd.mpg.de">zhiyang.zeng@mpsd.mpg.de</a>
@@ -252,10 +259,18 @@ Email: <a href="mailto:zhiyang.zeng@mpsd.mpg.de">zhiyang.zeng@mpsd.mpg.de</a>
   <li>Emergent phenomena in condensed matter systems</li>
 </ul>
 
-<h2>Education</h2>
-<p><strong>DPhil in Physics</strong>, 2021–2025<br>University of Oxford</p>
-<p><strong>BSc in Physics</strong>, 2017–2021<br>Peking University</p>
+  <h2>Education</h2>
 
+<div class="edu">
+  <div class="edu-item">
+    <strong>DPhil in Physics</strong>, 2021–2025<br>
+    University of Oxford
+  </div>
+
+  <div class="edu-item">
+    <strong>BSc in Physics</strong>, 2017–2021<br>
+    Peking University
+  </div>
 </div>
 
 <div class="main-photo">
