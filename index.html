@@ -6,7 +6,7 @@
 
 <title>Zhiyang Zeng</title>
 
-<!-- Leaflet map -->
+<!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -21,7 +21,7 @@ body {
   color: #222;
 }
 
-/* ===== HEADER (IDENTICAL) ===== */
+/* ===== HEADER ===== */
 .topbar {
   position: fixed;
   top: 0;
@@ -45,7 +45,6 @@ body {
   font-weight: bold;
 }
 
-/* ☰ icon */
 .menu-icon {
   display: none;
   font-size: 22px;
@@ -53,7 +52,6 @@ body {
   cursor: pointer;
 }
 
-/* menu */
 .topbar-right {
   display: flex;
 }
@@ -69,12 +67,11 @@ body {
   text-decoration: underline;
 }
 
-/* active page */
 .active {
   font-weight: bold;
 }
 
-/* ===== BANNER (SAME SYSTEM) ===== */
+/* ===== BANNER ===== */
 .banner-container {
   position: relative;
   width: 100vw;
@@ -120,19 +117,11 @@ body {
   margin: 0 10%;
 }
 
-/* ===== MAIN LAYOUT ===== */
-.main-container {
-  display: flex;
-  gap: 50px;
-}
-
-.main-text {
-  flex: 3;
-}
-
+/* ===== PHOTO (DESKTOP FLOAT) ===== */
 .main-photo {
-  flex: 1;
-  max-width: 260px;
+  float: right;
+  width: 260px;
+  margin: 0 0 20px 30px;
 }
 
 .main-photo img {
@@ -140,7 +129,7 @@ body {
   border-radius: 10px;
 }
 
-/* ===== LINK STYLE (for Cavalleri) ===== */
+/* ===== LINK STYLE ===== */
 .prof-link {
   color: inherit;
   text-decoration: underline;
@@ -212,22 +201,12 @@ body {
     margin: 8px 0;
   }
 
-  .main-container {
-    flex-direction: column;
-  }
-
-  .intro {
-    order: 1;
-  }
-
+  /* PHOTO BETWEEN SECTIONS */
   .main-photo {
-    order: 2;
-    max-width: 180px;
+    float: none;
+    display: block;
+    width: 180px;
     margin: 20px auto;
-  }
-
-  .rest {
-    order: 3;
   }
 
   .contact-container {
@@ -283,36 +262,16 @@ function toggleMenu() {
 <!-- CONTENT -->
 <div class="content">
 
-<div class="main-container">
-
-  <!-- TEXT -->
-  <div class="main-text">
-
-    <div class="intro">
-      <p>
-        My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
-        <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
-        Prof. Andrea Cavalleri</a> 
-        at the Max Planck Institute for the Structure and Dynamics of Matter.
-        My research focuses on ultrafast light–matter interactions, aiming to uncover 
-        new pathways for controlling structural and electronic orders in complex materials.
-      </p>
-    </div>
-
-    <div class="rest">
-      <h2>Research Interests</h2>
-      <ul>
-        <li>Ultrafast dynamics</li>
-        <li>Light–matter interactions</li>
-        <li>Light-induced phase transitions</li>
-        <li>Emergent phenomena in condensed matter systems</li>
-      </ul>
-
-      <h2>Education</h2>
-      <p><strong>DPhil in Physics</strong>, 2021–2025<br>University of Oxford</p>
-      <p><strong>BSc in Physics</strong>, 2017–2021<br>Peking University</p>
-    </div>
-
+  <!-- INTRO -->
+  <div class="intro">
+    <p>
+      My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
+      <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
+      Prof. Andrea Cavalleri</a> 
+      at the Max Planck Institute for the Structure and Dynamics of Matter.
+      My research focuses on ultrafast light–matter interactions, aiming to uncover 
+      new pathways for controlling structural and electronic orders in complex materials.
+    </p>
   </div>
 
   <!-- PHOTO -->
@@ -320,7 +279,22 @@ function toggleMenu() {
     <img src="zhiyangzeng.jpg" alt="Zhiyang Zeng">
   </div>
 
-</div>
+  <!-- REST -->
+  <div class="rest">
+
+    <h2>Research Interests</h2>
+    <ul>
+      <li>Ultrafast dynamics</li>
+      <li>Light–matter interactions</li>
+      <li>Light-induced phase transitions</li>
+      <li>Emergent phenomena in condensed matter systems</li>
+    </ul>
+
+    <h2>Education</h2>
+    <p><strong>DPhil in Physics</strong>, 2021–2025<br>University of Oxford</p>
+    <p><strong>BSc in Physics</strong>, 2017–2021<br>Peking University</p>
+
+  </div>
 
 </div>
 
@@ -350,6 +324,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 L.marker([53.577, 9.887]).addTo(map)
   .bindPopup("Max Planck Institute, Hamburg")
   .openPopup();
+
+/* FIX MOBILE MAP */
+setTimeout(function () {
+  map.invalidateSize();
+}, 300);
 </script>
 
 </body>
