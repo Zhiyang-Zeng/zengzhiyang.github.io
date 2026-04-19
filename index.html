@@ -6,6 +6,10 @@
 
 <title>Zhiyang Zeng</title>
 
+<!-- Leaflet (map) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <style>
 
 /* ===== BODY ===== */
@@ -23,16 +27,12 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  box-sizing: border-box;
-
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid #ddd;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 12px 10%;
   z-index: 1000;
 }
@@ -44,7 +44,6 @@ body {
   font-weight: bold;
 }
 
-/* ===== MENU ICON (HIDDEN ON DESKTOP) ===== */
 .menu-icon {
   display: none;
   font-size: 22px;
@@ -52,7 +51,6 @@ body {
   cursor: pointer;
 }
 
-/* ===== MENU ===== */
 .topbar-right {
   display: flex;
 }
@@ -61,7 +59,6 @@ body {
   margin-left: 14px;
   text-decoration: none;
   color: #1a5fb4;
-  font-size: 15px;
 }
 
 .topbar-right a:hover {
@@ -72,24 +69,18 @@ body {
 .banner-container {
   position: relative;
   width: 100vw;
-  height: 420px;   /* increase height */
+  height: 420px;
   overflow: hidden;
   margin-left: calc(-50vw + 50%);
   margin-bottom: 30px;
 }
 
-/*.banner {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}*/
-
 .banner {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
+
 .banner-text {
   position: absolute;
   top: 50%;
@@ -97,15 +88,8 @@ body {
   transform: translate(-50%, -50%);
   color: white;
   font-size: 42px;
-  font-weight: bold;
   text-align: center;
   text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-}
-
-.banner-text span {
-  display: block;
-  margin-top: 10px;
-  font-size: 20px;
 }
 
 .banner-credit {
@@ -121,10 +105,9 @@ body {
   margin: 0 10%;
 }
 
-/* ===== MAIN LAYOUT ===== */
+/* ===== LAYOUT ===== */
 .main-container {
   display: flex;
-  align-items: flex-start;
   gap: 50px;
 }
 
@@ -134,7 +117,7 @@ body {
 
 .main-photo {
   flex: 1;
-  max-width: 350px;
+  max-width: 320px;
   position: sticky;
   top: 100px;
 }
@@ -145,16 +128,15 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* ===== MAP ===== */
+#map {
+  width: 100%;
+  height: 350px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
 /* ===== LINKS ===== */
-a {
-  color: #1a5fb4;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 .prof-link {
   color: #222;
   text-decoration: underline;
@@ -168,10 +150,11 @@ a:hover {
   }
 
   .main-container {
+    display: flex;
     flex-direction: column;
   }
 
-  .main-text {
+  .intro {
     order: 1;
   }
 
@@ -182,6 +165,10 @@ a:hover {
     position: static;
   }
 
+  .main-text > *:not(.intro) {
+    order: 3;
+  }
+
   .banner-container {
     height: 220px;
   }
@@ -190,34 +177,28 @@ a:hover {
     font-size: 28px;
   }
 
-  .banner-text span {
-    font-size: 16px;
-  }
-
-  /* SHOW MENU ICON */
   .menu-icon {
     display: inline;
   }
 
-  /* HIDE MENU */
   .topbar-right {
     display: none;
     flex-direction: column;
-
     position: absolute;
     top: 60px;
     left: 5%;
-
     background: white;
     border: 1px solid #ddd;
-    padding: 10px 15px;
+    padding: 10px;
     border-radius: 6px;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
 
   .topbar-right a {
     margin: 8px 0;
+  }
+
+  #map {
+    height: 250px;
   }
 }
 
@@ -226,103 +207,91 @@ a:hover {
 
 <body>
 
-<!-- ===== HEADER ===== -->
+<!-- HEADER -->
 <header class="topbar">
-
   <div class="topbar-left">
     <span class="menu-icon" onclick="toggleMenu()">☰</span>
     Zhiyang Zeng
   </div>
-
   <div class="topbar-right" id="menu">
-    <a href="index.html" style="font-weight:bold;">Home</a>
+    <a href="index.html"><b>Home</b></a>
     <a href="research.html">Research</a>
     <a href="publications.html">Publications</a>
     <a href="gallery.html">Gallery</a>
   </div>
-
 </header>
 
-<!-- ===== BANNER ===== -->
+<!-- BANNER -->
 <div class="banner-container">
   <img src="Zhiyang_Zeng_Home_V1.png" class="banner">
-
   <div class="banner-text">
     Zhiyang Zeng<br>
-    <span>曾智洋</span>
+    <span style="font-size:20px;">曾智洋</span>
   </div>
-
-  <!-- ADD HERE -->
-  <div class="banner-credit">
-    © Artwork by M. C. Escher
-  </div>
+  <div class="banner-credit">© Artwork by M. C. Escher</div>
 </div>
 
-<!-- ===== CONTENT ===== -->
+<!-- CONTENT -->
 <div class="content">
 
 <div class="main-container">
 
+  <!-- TEXT -->
   <div class="main-text">
 
+    <div class="intro">
       <p>
         My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
         <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
-        Prof. Andrea Cavalleri
-        </a> 
-        at the Max Planck Institute for the Structure and Dynamics of Matter. 
-        My research focuses on ultrafast light–matter interactions, aiming to uncover 
-        novel pathways for controlling structural and electronic orders in quantum materials. 
-        I use table-top ultrafast optical techniques together with scattering experiments 
-        at large-scale facilities to explore and engineer emergent functionalities.
+        Prof. Andrea Cavalleri</a> 
+        at the Max Planck Institute for the Structure and Dynamics of Matter. My research focuses on ultrafast light–matter interactions, aiming to uncover novel pathways for controlling structural and electronic orders in quantum materials. I use table-top ultrafast optical techniques together with scattering experiments at large-scale facilities to explore and engineer emergent functionalities.
       </p>
+    </div>
 
-  <div class="main-photo">
-    <img src="zhiyangzeng.jpg" alt="Zhiyang Zeng">
-  </div>
-    
     <h2>Research Interests</h2>
     <ul>
       <li>Ultrafast dynamics</li>
       <li>Light–matter interactions</li>
       <li>Light-induced phase transitions</li>
-      <li>Emergent phenomena in condensed matter systems</li>
+      <li>Emergent phenomena</li>
     </ul>
 
     <h2>Education</h2>
-    <div class="edu">
-      <p><strong>DPhil in Physics</strong>, 2021–2025<br>University of Oxford</p>
-      <p><strong>BSc in Physics</strong>, 2017–2021<br>Peking University</p>
-    </div>
-    
+    <p><strong>DPhil in Physics</strong>, Oxford</p>
+    <p><strong>BSc in Physics</strong>, Peking University</p>
+
     <h2>Contact</h2>
-    <div class="edu">
-            <p>
-      Email: 
-      zhiyang.zeng@mpsd.mpg.de
-    </p>
-            <p>
-      Address: 
-      Luruper Chaussee 149, 22761, Hamburg, Germany
-    </p>
-    </div>
-    
+    <p>Email: zhiyang.zeng@mpsd.mpg.de</p>
+    <p>Address: Hamburg, Germany</p>
+
+    <div id="map"></div>
+
+  </div>
+
+  <!-- PHOTO -->
+  <div class="main-photo">
+    <img src="zhiyangzeng.jpg">
   </div>
 
 </div>
 
 </div>
 
-<!-- ===== SCRIPT ===== -->
+<!-- SCRIPT -->
 <script>
 function toggleMenu() {
   var menu = document.getElementById("menu");
-  if (menu.style.display === "flex") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "flex";
-  }
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
 }
+
+// Map
+var map = L.map('map').setView([53.577, 9.887], 15);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+L.marker([53.577, 9.887]).addTo(map)
+  .bindPopup("Max Planck Institute, Hamburg")
+  .openPopup();
 </script>
 
 </body>
