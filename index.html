@@ -117,12 +117,19 @@ body {
 .content {
   margin: 0 10%;
 }
+.intro-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
 
-/* ===== PHOTO (DESKTOP FLOAT) ===== */
+.intro {
+  flex: 3;
+}
+
 .main-photo {
-  float: right;
-  width: 260px;
-  margin: 0 0 20px 30px;
+  flex: 1;
+  max-width: 260px;
 }
 
 .main-photo img {
@@ -164,7 +171,6 @@ body {
 
 /* ===== MOBILE ===== */
 @media (max-width: 800px) {
-
   .content {
     margin: 0 5%;
   }
@@ -203,10 +209,12 @@ body {
   }
 
   /* PHOTO BETWEEN SECTIONS */
+  .intro-container {
+    flex-direction: column;
+  }
+
   .main-photo {
-    float: none;
-    display: block;
-    width: 180px;
+    max-width: 180px;
     margin: 20px auto;
   }
 
@@ -223,17 +231,6 @@ body {
 </head>
 
 <body>
-
-<script>
-function toggleMenu() {
-  var menu = document.getElementById("menu");
-  if (menu.style.display === "flex") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "flex";
-  }
-}
-</script>
 
 <!-- HEADER -->
 <header class="topbar">
@@ -264,7 +261,8 @@ function toggleMenu() {
 <div class="content">
 
   <!-- INTRO -->
-  <div class="intro">
+  <div class="intro-container">
+    <div class="intro">
     <p>
       My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
       <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
@@ -273,12 +271,10 @@ function toggleMenu() {
       My research focuses on ultrafast light–matter interactions, aiming to uncover novel pathways for controlling structural and electronic orders in quantum materials. I use table-top ultrafast optical techniques together with scattering experiments at large-scale facilities to explore and engineer emergent functionalities.
     </p>
   </div>
-
-  <!-- PHOTO -->
-  <div class="main-photo">
-    <img src="zhiyangzeng.jpg" alt="Zhiyang Zeng">
+      <div class="main-photo">
+    <img src="zhiyangzeng.jpg">
   </div>
-
+ </div>
   <!-- REST -->
   <div class="rest">
 
@@ -325,10 +321,15 @@ L.marker([53.577, 9.887]).addTo(map)
   .bindPopup("Max Planck Institute, Hamburg")
   .openPopup();
 
-/* FIX MOBILE MAP */
-setTimeout(function () {
-  map.invalidateSize();
-}, 300);
+/* 🔥 robust fix */
+function resizeMap() {
+  setTimeout(function () {
+    map.invalidateSize();
+  }, 400);
+}
+
+window.addEventListener("load", resizeMap);
+window.addEventListener("resize", resizeMap);
 </script>
 
 </body>
