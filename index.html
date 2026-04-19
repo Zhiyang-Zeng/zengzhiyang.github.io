@@ -84,16 +84,23 @@ body {
 /* ===== TEXT OVERLAY ===== */
 .banner-text {
   position: absolute;
-  bottom: 30px;
-  left: 5%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
   color: white;
-  font-size: 28px;
+
+  font-size: 42px;        /* bigger */
   font-weight: bold;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+
+  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
 }
 
 .banner-text span {
-  font-size: 16px;
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
   font-weight: normal;
 }
 
@@ -136,7 +143,7 @@ a:hover {
 
   <div class="banner-text">
     Zhiyang Zeng<br>
-    <span>Ultrafast Light–Matter Interactions</span>
+    曾智洋
   </div>
 </div>
 
@@ -146,7 +153,7 @@ a:hover {
 <h1>About</h1>
 
 <p>
-My name is Zhiyang (Paul) Zeng. I'm an postdoctoral researcher working with <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" 
+My name is Zhiyang (Paul) Zeng. I am a postdoctoral researcher working with <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" 
    target="_blank" class="prof-link">
 Prof. Andrea Cavalleri
 </a> at the Max Planck Institute for the Structure and Dynamics of Matter. My research focuses on ultrafast light–matter interactions, aiming to uncover novel pathways for controlling structural and electronic orders in quantum materials. I use table-top ultrafast optical techniques together with scattering experiments at large-scale facilities to explore and engineer emergent functionalities.</p>
