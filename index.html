@@ -25,7 +25,6 @@ body {
 .topbar {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(6px);
@@ -38,10 +37,8 @@ body {
 }
 
 .topbar-left {
-  display: flex;
-  align-items: center;
-  font-size: 18px;
   font-weight: bold;
+  font-size: 18px;
 }
 
 .menu-icon {
@@ -51,18 +48,10 @@ body {
   cursor: pointer;
 }
 
-.topbar-right {
-  display: flex;
-}
-
 .topbar-right a {
   margin-left: 14px;
   text-decoration: none;
-  color: #1a5fb4;
-}
-
-.topbar-right a:hover {
-  text-decoration: underline;
+  color: #0b3d91;
 }
 
 /* ===== BANNER ===== */
@@ -72,7 +61,6 @@ body {
   height: 420px;
   overflow: hidden;
   margin-left: calc(-50vw + 50%);
-  margin-bottom: 30px;
 }
 
 .banner {
@@ -89,7 +77,6 @@ body {
   color: white;
   font-size: 42px;
   text-align: center;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
 }
 
 .banner-credit {
@@ -102,9 +89,25 @@ body {
 
 /* ===== CONTENT ===== */
 .content {
-  margin: 0 10%;
+  margin: 30px 10%;
+}
+  
+.contact-container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin-top: 10px;
 }
 
+.contact-info {
+  flex: 1;
+}
+
+#map {
+  flex: 1.5;
+  height: 300px;
+  border-radius: 10px;
+}
 /* ===== LAYOUT ===== */
 .main-container {
   display: flex;
@@ -117,7 +120,7 @@ body {
 
 .main-photo {
   flex: 1;
-  max-width: 320px;
+  max-width: 300px;
   position: sticky;
   top: 100px;
 }
@@ -125,7 +128,6 @@ body {
 .main-photo img {
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 /* ===== MAP ===== */
@@ -136,21 +138,14 @@ body {
   border-radius: 10px;
 }
 
-/* ===== LINKS ===== */
-.prof-link {
-  color: #222;
-  text-decoration: underline;
-}
-
 /* ===== MOBILE ===== */
 @media (max-width: 800px) {
 
   .content {
-    margin: 0 5%;
+    margin: 20px 5%;
   }
 
   .main-container {
-    display: flex;
     flex-direction: column;
   }
 
@@ -165,7 +160,7 @@ body {
     position: static;
   }
 
-  .main-text > *:not(.intro) {
+  .rest {
     order: 3;
   }
 
@@ -190,7 +185,6 @@ body {
     background: white;
     border: 1px solid #ddd;
     padding: 10px;
-    border-radius: 6px;
   }
 
   .topbar-right a {
@@ -213,6 +207,7 @@ body {
     <span class="menu-icon" onclick="toggleMenu()">☰</span>
     Zhiyang Zeng
   </div>
+
   <div class="topbar-right" id="menu">
     <a href="index.html"><b>Home</b></a>
     <a href="research.html">Research</a>
@@ -239,32 +234,39 @@ body {
   <!-- TEXT -->
   <div class="main-text">
 
+    <!-- INTRO -->
     <div class="intro">
       <p>
         My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
-        <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
-        Prof. Andrea Cavalleri</a> 
-        at the Max Planck Institute for the Structure and Dynamics of Matter. My research focuses on ultrafast light–matter interactions, aiming to uncover novel pathways for controlling structural and electronic orders in quantum materials. I use table-top ultrafast optical techniques together with scattering experiments at large-scale facilities to explore and engineer emergent functionalities.
+        <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank">
+        Prof. Andrea Cavalleri</a>. My research focuses on ultrafast light–matter interactions, aiming to uncover novel pathways for controlling structural and electronic orders in quantum materials. I use table-top ultrafast optical techniques together with scattering experiments at large-scale facilities to explore and engineer emergent functionalities.
       </p>
     </div>
 
-    <h2>Research Interests</h2>
-    <ul>
-      <li>Ultrafast dynamics</li>
-      <li>Light–matter interactions</li>
-      <li>Light-induced phase transitions</li>
-      <li>Emergent phenomena</li>
-    </ul>
+    <!-- REST CONTENT -->
+    <div class="rest">
+      <h2>Research Interests</h2>
+      <ul>
+        <li>Ultrafast dynamics</li>
+        <li>Light–matter interactions</li>
+        <li>Emergent phenomena</li>
+      </ul>
 
-    <h2>Education</h2>
-    <p><strong>DPhil in Physics</strong>, Oxford</p>
-    <p><strong>BSc in Physics</strong>, Peking University</p>
+<h2>Contact</h2>
 
-    <h2>Contact</h2>
+<div class="contact-container">
+
+  <!-- LEFT: TEXT -->
+  <div class="contact-info">
     <p>Email: zhiyang.zeng@mpsd.mpg.de</p>
-    <p>Address: Hamburg, Germany</p>
+    <p>Address: Luruper Chaussee 149, 22761 Hamburg, Germany</p>
+  </div>
 
-    <div id="map"></div>
+  <!-- RIGHT: MAP -->
+  <div id="map"></div>
+
+</div>
+    </div>
 
   </div>
 
@@ -277,7 +279,6 @@ body {
 
 </div>
 
-<!-- SCRIPT -->
 <script>
 function toggleMenu() {
   var menu = document.getElementById("menu");
@@ -285,7 +286,7 @@ function toggleMenu() {
 }
 
 // Map
-var map = L.map('map').setView([53.577, 9.887], 15);
+var map = L.map('map').setView([53.577, 9.887], 10);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
