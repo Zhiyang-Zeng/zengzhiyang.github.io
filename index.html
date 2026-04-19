@@ -23,44 +23,27 @@ body {
   color: #222;
 }
 
-/* ===== HEADER ===== */
 .topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid #ddd;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 5%;
-  padding-right: 10%;
-  z-index: 1000;
+  padding: 12px 10%;   
 }
 
-/* allow shrinking properly */
+/* keep name stable */
 .topbar-left {
   font-size: 18px;
   font-weight: bold;
   flex-shrink: 0;
 }
 
-/* KEY FIX */
+/* prevent breaking layout */
 .topbar-right {
   display: flex;
-  flex-wrap: wrap;      /* allow wrapping instead of hiding */
-  justify-content: flex-end;
+  flex-wrap: nowrap;     /* IMPORTANT: no wrapping */
+  align-items: center;
 }
 
-/* slightly tighter spacing */
+/* spacing between items */
 .topbar-right a {
-  margin-left: 12px;
+  margin-left: 14px;
   text-decoration: none;
   color: #1a5fb4;
   font-size: 15px;
@@ -99,7 +82,7 @@ body {
 /* photo on right */
 .about-photo {
   flex: 1;
-  max-width: 400px;
+  max-width: 320px;
 }
 
 .about-photo img {
@@ -136,7 +119,7 @@ body {
 
 /* ===== CONTENT ===== */
 .content {
-  margin: 0 5%;
+  margin: 10%;
 }
 
 /* ===== LINKS ===== */
