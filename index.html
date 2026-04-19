@@ -25,33 +25,42 @@ body {
 .topbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
+  box-sizing: border-box;
+
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid #ddd;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 12px 10%;
   z-index: 1000;
 }
 
 .topbar-left {
-  font-weight: bold;
+  display: flex;
+  align-items: center;
   font-size: 18px;
+  font-weight: bold;
 }
 
-.menu-icon {
-  display: none;
-  font-size: 22px;
-  margin-right: 12px;
-  cursor: pointer;
+.topbar-right {
+  display: flex;
 }
 
 .topbar-right a {
   margin-left: 14px;
   text-decoration: none;
   color: #0b3d91;
+  font-size: 15px;
+}
+
+.topbar-right a:hover {
+  text-decoration: underline;
 }
 
 /* ===== BANNER ===== */
@@ -252,6 +261,12 @@ body {
         <li>Emergent phenomena</li>
       </ul>
 
+    <h2>Education</h2>
+<div class="edu">
+  <p><strong>DPhil in Physics</strong>, 2021–2025<br>University of Oxford</p>
+  <p><strong>BSc in Physics</strong>, 2017–2021<br>Peking University</p>
+</div>
+      
 <h2>Contact</h2>
 
 <div class="contact-container">
