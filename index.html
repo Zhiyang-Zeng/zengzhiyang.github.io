@@ -38,8 +38,23 @@ body {
 }
 
 .topbar-left {
+  display: flex;
+  align-items: center;
   font-size: 18px;
   font-weight: bold;
+}
+
+/* ===== MENU ICON (HIDDEN ON DESKTOP) ===== */
+.menu-icon {
+  display: none;
+  font-size: 22px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+/* ===== MENU ===== */
+.topbar-right {
+  display: flex;
 }
 
 .topbar-right a {
@@ -99,12 +114,10 @@ body {
   gap: 50px;
 }
 
-/* TEXT LEFT */
 .main-text {
   flex: 3;
 }
 
-/* PHOTO RIGHT */
 .main-photo {
   flex: 1;
   max-width: 300px;
@@ -144,12 +157,10 @@ a:hover {
     flex-direction: column;
   }
 
-  /* TEXT FIRST */
   .main-text {
     order: 1;
   }
 
-  /* PHOTO BELOW */
   .main-photo {
     order: 2;
     max-width: 200px;
@@ -157,7 +168,6 @@ a:hover {
     position: static;
   }
 
-  /* banner smaller */
   .banner-container {
     height: 220px;
   }
@@ -169,6 +179,32 @@ a:hover {
   .banner-text span {
     font-size: 16px;
   }
+
+  /* SHOW MENU ICON */
+  .menu-icon {
+    display: inline;
+  }
+
+  /* HIDE MENU */
+  .topbar-right {
+    display: none;
+    flex-direction: column;
+
+    position: absolute;
+    top: 60px;
+    left: 5%;
+
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 6px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .topbar-right a {
+    margin: 8px 0;
+  }
 }
 
 </style>
@@ -176,7 +212,7 @@ a:hover {
 
 <body>
 
-<!-- HEADER -->
+<!-- ===== HEADER ===== -->
 <header class="topbar">
 
   <div class="topbar-left">
@@ -192,8 +228,8 @@ a:hover {
   </div>
 
 </header>
-  
-<!-- BANNER -->
+
+<!-- ===== BANNER ===== -->
 <div class="banner-container">
   <img src="Zhiyang_Zeng_Home_V1.png" class="banner">
   <div class="banner-text">
@@ -202,12 +238,11 @@ a:hover {
   </div>
 </div>
 
-<!-- CONTENT -->
+<!-- ===== CONTENT ===== -->
 <div class="content">
 
 <div class="main-container">
 
-  <!-- TEXT (LEFT on desktop) -->
   <div class="main-text">
 
     <h1>About</h1>
@@ -241,7 +276,6 @@ a:hover {
 
   </div>
 
-  <!-- PHOTO (RIGHT on desktop) -->
   <div class="main-photo">
     <img src="zhiyangzeng.jpg" alt="Zhiyang Zeng">
   </div>
@@ -249,6 +283,18 @@ a:hover {
 </div>
 
 </div>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+function toggleMenu() {
+  var menu = document.getElementById("menu");
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+  }
+}
+</script>
 
 </body>
 </html>
