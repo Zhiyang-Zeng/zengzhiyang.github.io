@@ -78,12 +78,18 @@ body {
   margin-bottom: 30px;
 }
 
-.banner {
+/*.banner {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+}*/
 
+.banner {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: black; /* optional */
+}
 .banner-text {
   position: absolute;
   top: 50%;
@@ -100,6 +106,14 @@ body {
   display: block;
   margin-top: 10px;
   font-size: 20px;
+}
+
+.banner-credit {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
 }
 
 /* ===== CONTENT ===== */
@@ -231,10 +245,16 @@ a:hover {
 
 <!-- ===== BANNER ===== -->
 <div class="banner-container">
-  <img src="Zhiyang_Zeng_Home_V1.jpg" class="banner">
+  <img src="Zhiyang_Zeng_Home_V1.png" class="banner">
+
   <div class="banner-text">
     Zhiyang Zeng<br>
     <span>曾智洋</span>
+  </div>
+
+  <!-- ADD HERE -->
+  <div class="banner-credit">
+    © Artwork by M. C. Escher
   </div>
 </div>
 
