@@ -23,8 +23,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-
-  box-sizing: border-box;   /* 🔥 THIS FIXES YOUR PROBLEM */
+  box-sizing: border-box;
 
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(6px);
@@ -39,22 +38,8 @@ body {
 }
 
 .topbar-left {
-  display: flex;
-  align-items: center;
   font-size: 18px;
   font-weight: bold;
-}
-
-.menu-icon {
-  display: none;
-  font-size: 22px;
-  margin-right: 12px;
-  cursor: pointer;
-}
-
-.topbar-right {
-  display: flex;
-  align-items: center;
 }
 
 .topbar-right a {
@@ -89,10 +74,10 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
   color: white;
   font-size: 42px;
   font-weight: bold;
+  text-align: center;
   text-shadow: 0 3px 10px rgba(0,0,0,0.6);
 }
 
@@ -107,19 +92,22 @@ body {
   margin: 0 10%;
 }
 
-/* ===== LAYOUT ===== */
+/* ===== MAIN LAYOUT ===== */
 .main-container {
   display: flex;
+  align-items: flex-start;
   gap: 50px;
 }
 
+/* TEXT LEFT */
 .main-text {
   flex: 3;
 }
 
+/* PHOTO RIGHT */
 .main-photo {
   flex: 1;
-  max-width: 320px;
+  max-width: 300px;
   position: sticky;
   top: 100px;
 }
@@ -156,12 +144,20 @@ a:hover {
     flex-direction: column;
   }
 
+  /* TEXT FIRST */
+  .main-text {
+    order: 1;
+  }
+
+  /* PHOTO BELOW */
   .main-photo {
+    order: 2;
     max-width: 200px;
     margin: 20px auto;
     position: static;
   }
 
+  /* banner smaller */
   .banner-container {
     height: 220px;
   }
@@ -173,28 +169,6 @@ a:hover {
   .banner-text span {
     font-size: 16px;
   }
-
-  /* hamburger */
-  .menu-icon {
-    display: inline;
-  }
-
-  .topbar-right {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 5%;
-    background: white;
-    border: 1px solid #ddd;
-    padding: 10px 15px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-
-  .topbar-right a {
-    margin: 8px 0;
-  }
 }
 
 </style>
@@ -205,12 +179,10 @@ a:hover {
 <!-- HEADER -->
 <header class="topbar">
   <div class="topbar-left">
-    <span class="menu-icon" onclick="toggleMenu()">☰</span>
     Zhiyang Zeng
   </div>
-
-  <div class="topbar-right" id="menu">
-    <a href="index.html">Home</a>
+  <div class="topbar-right">
+    <a href="index.html" style="font-weight:bold;">Home</a>
     <a href="research.html">Research</a>
     <a href="publications.html">Publications</a>
     <a href="gallery.html">Gallery</a>
@@ -231,67 +203,48 @@ a:hover {
 
 <div class="main-container">
 
-<div class="main-text">
+  <!-- TEXT (LEFT on desktop) -->
+  <div class="main-text">
 
-<h1>About</h1>
+    <h1>About</h1>
 
-      <p>
-        My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
-        <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
-        Prof. Andrea Cavalleri
-        </a> 
-        at the Max Planck Institute for the Structure and Dynamics of Matter. 
-        My research focuses on ultrafast light–matter interactions, aiming to uncover 
-        novel pathways for controlling structural and electronic orders in quantum materials. 
-        I use table-top ultrafast optical techniques together with scattering experiments 
-        at large-scale facilities to explore and engineer emergent functionalities.
-      </p>
+    <p>
+      My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
+      <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
+      Prof. Andrea Cavalleri
+      </a> 
+      at the Max Planck Institute for the Structure and Dynamics of Matter.
+    </p>
 
-<p>
-Email: <a href="mailto:zhiyang.zeng@mpsd.mpg.de">zhiyang.zeng@mpsd.mpg.de</a>
-</p>
+    <p>
+      Email: <a href="mailto:zhiyang.zeng@mpsd.mpg.de">
+      zhiyang.zeng@mpsd.mpg.de</a>
+    </p>
 
-<h2>Research Interests</h2>
-<ul>
-  <li>Ultrafast dynamics</li>
-  <li>Light–matter interactions</li>
-  <li>Light-induced phase transitions</li>
-  <li>Emergent phenomena in condensed matter systems</li>
-</ul>
+    <h2>Research Interests</h2>
+    <ul>
+      <li>Ultrafast dynamics</li>
+      <li>Light–matter interactions</li>
+      <li>Light-induced phase transitions</li>
+      <li>Emergent phenomena in condensed matter systems</li>
+    </ul>
 
-  <h2>Education</h2>
+    <h2>Education</h2>
+    <div class="edu">
+      <p><strong>DPhil in Physics</strong>, 2021–2025<br>University of Oxford</p>
+      <p><strong>BSc in Physics</strong>, 2017–2021<br>Peking University</p>
+    </div>
 
-<div class="edu">
-  <div class="edu-item">
-    <strong>DPhil in Physics</strong>, 2021–2025<br>
-    University of Oxford
   </div>
 
-  <div class="edu-item">
-    <strong>BSc in Physics</strong>, 2017–2021<br>
-    Peking University
+  <!-- PHOTO (RIGHT on desktop) -->
+  <div class="main-photo">
+    <img src="zhiyangzeng.jpg" alt="Zhiyang Zeng">
   </div>
-</div>
-
-<div class="main-photo">
-  <img src="zhiyangzeng.jpg">
-</div>
 
 </div>
 
 </div>
-
-<!-- SCRIPT -->
-<script>
-function toggleMenu() {
-  var menu = document.getElementById("menu");
-  if (menu.style.display === "flex") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "flex";
-  }
-}
-</script>
 
 </body>
 </html>
