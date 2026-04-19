@@ -6,14 +6,6 @@
 
 <style>
 
-  .prof-link {
-  color: #222;          /* same as normal text */
-  text-decoration: underline;
-}
-
-.prof-link:hover {
-  color: #222;
-}
 /* ===== BODY ===== */
 body {
   font-family: Arial, sans-serif;
@@ -23,25 +15,37 @@ body {
   color: #222;
 }
 
+/* ===== HEADER ===== */
 .topbar {
-  padding: 12px 10%;   
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #ddd;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 6%;   /* balanced header spacing */
+  z-index: 1000;
 }
 
-/* keep name stable */
 .topbar-left {
   font-size: 18px;
   font-weight: bold;
   flex-shrink: 0;
 }
 
-/* prevent breaking layout */
 .topbar-right {
   display: flex;
-  flex-wrap: nowrap;     /* IMPORTANT: no wrapping */
+  flex-wrap: nowrap;
   align-items: center;
 }
 
-/* spacing between items */
 .topbar-right a {
   margin-left: 14px;
   text-decoration: none;
@@ -49,7 +53,11 @@ body {
   font-size: 15px;
 }
 
-/* ===== BANNER CONTAINER ===== */
+.topbar-right a:hover {
+  text-decoration: underline;
+}
+
+/* ===== BANNER ===== */
 .banner-container {
   position: relative;
   width: 100vw;
@@ -59,54 +67,22 @@ body {
   margin-bottom: 30px;
 }
 
-/* ===== IMAGE ===== */
 .banner {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center; /* KEY: keeps center visible */
+  object-position: center;
 }
 
-/* ===== ABOUT LAYOUT ===== */
-.about-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-}
-
-/* text takes most space */
-.about-text {
-  flex: 2;
-}
-
-/* photo on right */
-.about-photo {
-  flex: 1;
-  max-width: 320px;
-}
-
-.about-photo img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.about-photo img {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-  
-/* ===== TEXT OVERLAY ===== */
 .banner-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   text-align: center;
   color: white;
-
-  font-size: 42px;        /* bigger */
+  font-size: 42px;
   font-weight: bold;
-
   text-shadow: 0 3px 10px rgba(0,0,0,0.6);
 }
 
@@ -117,9 +93,33 @@ body {
   font-weight: normal;
 }
 
-/* ===== CONTENT ===== */
+/* ===== CONTENT WRAPPER ===== */
 .content {
-  margin: 10%;
+  margin: 0 10%;   /* YOUR REQUEST: 10% margin */
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.main-text {
+  flex: 3;
+}
+
+.main-photo {
+  flex: 1;
+  max-width: 320px;
+  position: sticky;
+  top: 100px;
+}
+
+.main-photo img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 /* ===== LINKS ===== */
@@ -130,6 +130,16 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+/* ===== SPECIAL LINK ===== */
+.prof-link {
+  color: #222;
+  text-decoration: underline;
+}
+
+.prof-link:hover {
+  color: #222;
 }
 
 </style>
@@ -156,52 +166,61 @@ a:hover {
 
   <div class="banner-text">
     Zhiyang Zeng<br>
-    曾智洋
+    <span>曾智洋</span>
   </div>
 </div>
 
 <!-- ===== MAIN CONTENT ===== -->
-<div class="main-container">
+<div class="content">
 
-  <!-- LEFT: ALL TEXT -->
-  <div class="main-text">
+  <div class="main-container">
 
-    <h1>About</h1>
+    <!-- LEFT: TEXT -->
+    <div class="main-text">
 
-  <div class="about-text">
-    <p>
-      My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
-      <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" 
-         target="_blank" class="prof-link">
-      Prof. Andrea Cavalleri
-      </a> 
-      at the Max Planck Institute for the Structure and Dynamics of Matter. 
-      My research focuses on ultrafast light–matter interactions, aiming to uncover 
-      novel pathways for controlling structural and electronic orders in quantum materials. 
-      I use table-top ultrafast optical techniques together with scattering experiments 
-      at large-scale facilities to explore and engineer emergent functionalities.
-    </p>
+      <h1>About</h1>
 
-    <p>
-      Email: <a href="mailto:zhiyang.zeng@mpsd.mpg.de">
-      zhiyang.zeng@mpsd.mpg.de</a>
-    </p>
-  </div>
+      <p>
+        My name is Zhiyang (Paul) Zeng. I'm a postdoctoral researcher working with 
+        <a href="https://qcmd.mpsd.mpg.de/andrea-cavalleri/" target="_blank" class="prof-link">
+        Prof. Andrea Cavalleri
+        </a> 
+        at the Max Planck Institute for the Structure and Dynamics of Matter. 
+        My research focuses on ultrafast light–matter interactions, aiming to uncover 
+        novel pathways for controlling structural and electronic orders in quantum materials. 
+        I use table-top ultrafast optical techniques together with scattering experiments 
+        at large-scale facilities to explore and engineer emergent functionalities.
+      </p>
 
-    <h2>Education</h2>
-    <div class="edu">
-      <p><strong>DPhil in Physics</strong>, 2021–2025<br>University of Oxford</p>
-      <p><strong>BSc in Physics</strong>, 2017–2021<br>Peking University</p>
+      <p>
+        Email: <a href="mailto:zhiyang.zeng@mpsd.mpg.de">
+        zhiyang.zeng@mpsd.mpg.de</a>
+      </p>
+
+      <h2>Research Interests</h2>
+      <ul>
+        <li>Ultrafast dynamics</li>
+        <li>Light–matter interactions</li>
+        <li>Light-induced phase transitions</li>
+        <li>Emergent phenomena in condensed matter systems</li>
+      </ul>
+
+      <h2>Education</h2>
+      <div class="edu">
+        <p><strong>DPhil in Physics</strong>, 2021–2025<br>University of Oxford</p>
+        <p><strong>BSc in Physics</strong>, 2017–2021<br>Peking University</p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: PHOTO -->
+    <div class="main-photo">
+      <img src="zhiyangzeng.jpg" alt="Zhiyang Zeng">
     </div>
 
   </div>
 
-  <!-- RIGHT: PHOTO -->
-  <div class="main-photo">
-    <img src="zhiyangzeng.jpg">
-  </div>
-
 </div>
-    
+
 </body>
 </html>
