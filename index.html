@@ -98,15 +98,18 @@ body {
 .banner-container {
   position: relative;
   width: 100vw;
-  aspect-ratio: 11 / 4;
+  aspect-ratio: 11 / 3;
   margin-left: calc(-50vw + 50%);
   margin-bottom: 30px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .banner {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: none;
 }
 
 .banner-text {
@@ -208,6 +211,7 @@ body {
 
   .banner-container {
     height: 200px;
+    background-attachment: scroll;
   }
 
   .banner-text {
@@ -282,8 +286,7 @@ body {
 </header>
 
 <!-- BANNER -->
-<div class="banner-container">
-  <img src="Zhiyang_Zeng_Home_V1.png" class="banner">
+<div class="banner-container" style="background-image: url('Zhiyang_Zeng_Home_V2.jpg');">
   <div class="banner-text">
     Zhiyang Zeng
     <span class="banner-sub">曾智洋</span>

@@ -75,16 +75,19 @@ body {
   position: relative;
   width: 100vw;
 
-  aspect-ratio: 11 / 4;   /* adjust to your image */
+  aspect-ratio: 11 / 3;   /* adjust to your image */
 
   margin-left: calc(-50vw + 50%);
   margin-bottom: 30px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .banner {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: none;
 }
 
 .banner-text {
@@ -146,6 +149,7 @@ a:hover {
 
   .banner-container {
     height: 200px;
+    background-attachment: scroll;
   }
 
   .banner-text {
@@ -198,8 +202,7 @@ a:hover {
 </header>
 
 <!-- BANNER -->
-<div class="banner-container">
-  <img src="Zhiyang_Zeng_Publications_V1.jpg" class="banner">
+<div class="banner-container" style="background-image: url('Zhiyang_Zeng_Research_V2.jpg');">
   <div class="banner-text">Research</div>
 </div>
 
