@@ -143,7 +143,13 @@ body {
   }
 
   .banner-container {
-    height: auto;
+    aspect-ratio: auto;
+    height: clamp(180px, 48vw, 240px);
+  }
+
+  .banner {
+    object-fit: cover;
+    object-position: center center;
   }
 
   .banner-text {
