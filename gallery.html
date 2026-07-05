@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zhiyang Zeng's Research Website | Zhiyang Zeng</title>
+<title>Gallery | Zhiyang Zeng</title>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-gallery-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-gallery.png">
 
@@ -85,6 +85,7 @@ body {
 
   margin-left: calc(-50vw + 50%);
   margin-bottom: 30px;
+  overflow: hidden;
 }
 
 .banner {
@@ -92,6 +93,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  transform: translateY(var(--banner-center-shift, 0px));
 }
 
 .banner-text {
@@ -270,5 +272,56 @@ function toggleMenu() {
 }
 </script>
 
+<script>
+(function () {
+  const banners = document.querySelectorAll(".banner-container");
+  if (!banners.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let ticking = false;
+
+  function updateBannerCentering() {
+    const header = document.querySelector(".topbar");
+    const headerBottom = header ? header.offsetHeight : 0;
+    const viewportBottom = window.innerHeight || document.documentElement.clientHeight;
+
+    banners.forEach(function (container) {
+      const image = container.querySelector(".banner");
+      if (!image) return;
+
+      const rect = container.getBoundingClientRect();
+      const visibleTop = Math.max(headerBottom, rect.top);
+      const visibleBottom = Math.min(viewportBottom, rect.bottom);
+
+      if (visibleBottom <= visibleTop) {
+        container.style.setProperty("--banner-center-shift", "0px");
+        return;
+      }
+
+      const visibleCenterInBanner = ((visibleTop + visibleBottom) / 2) - rect.top;
+      const bannerCenter = container.offsetHeight / 2;
+      const rawShift = visibleCenterInBanner - bannerCenter;
+
+      const hiddenTop = Math.max(0, visibleTop - rect.top);
+      const hiddenBottom = Math.max(0, rect.bottom - visibleBottom);
+      const shift = Math.max(-hiddenBottom, Math.min(hiddenTop, rawShift));
+
+      container.style.setProperty("--banner-center-shift", shift + "px");
+    });
+
+    ticking = false;
+  }
+
+  function requestBannerCentering() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateBannerCentering);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", requestBannerCentering, { passive: true });
+  window.addEventListener("resize", requestBannerCentering);
+  updateBannerCentering();
+})();
+</script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zhiyang Zeng's Research Website | Zhiyang Zeng</title>
+<title>Research | Zhiyang Zeng</title>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-research-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-research.png">
 
@@ -81,6 +81,7 @@ body {
 
   margin-left: calc(-50vw + 50%);
   margin-bottom: 30px;
+  overflow: hidden;
 }
 
 .banner {
@@ -88,6 +89,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  transform: translateY(var(--banner-center-shift, 0px));
 }
 
 .banner-text {
@@ -138,6 +140,45 @@ a:hover {
 .prof-link {
   color: #0b3d91;
   text-decoration: underline;
+}
+
+.database-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 24px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #0b3d91;
+  background: #f4f7fb;
+  border-radius: 6px;
+}
+
+.database-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.database-callout p {
+  margin: 0;
+}
+
+.database-link {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 7px 12px;
+  background: #0b3d91;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.database-link:hover {
+  background: #082c6c;
+  text-decoration: none;
 }
 
 /* ===== MOBILE ===== */
@@ -348,15 +389,19 @@ Selective excitation of lattice vibrations enables reversible switching of ferro
 Strain provides a powerful route to control material properties by modifying lattice symmetry. Established effects such as piezoelectricity and piezomagnetism highlight the coupling between mechanical deformation and functional responses.
 </p>
   
-<img src="Research_piezochiral.jpg" class="inline-img">
+<img src="Research_piezochiral_2.jpg" class="inline-img">
 
 <p>
 The piezochiral effect introduces a new strain-controlled functionality, enabling direct coupling between uniaxial strain and structural chirality. This mechanism extends the family of strain-driven phenomena and provides a pathway for deterministic control of chirality.
 </p>
 
-<p>
-An associated <a href="https://piezochiral.org" target="_blank" class="paper-link">Piezochiral Database</a>  has been developed as an open-access resource containing over 40,000 candidate piezochiral materials, with searchable symmetry classifications, piezochiral tensor forms, and materials data.
-</p>
+<div class="database-callout">
+  <img src="https://piezochiral.org/favicon.ico" alt="" class="database-icon" onerror="this.style.display='none'">
+  <p>
+    <a href="https://piezochiral.org" target="_blank" class="database-link">Piezochiral Database</a><br>
+    Open-access resource containing over 40,000 candidate piezochiral materials, with searchable symmetry classifications, piezochiral tensor forms, and materials data.
+  </p>
+</div>
 
 <p>
 <span class="paper-link"><em>Nature</em>, in press (2026)</span>; <a href="https://arxiv.org/abs/2510.21674" target="_blank" class="paper-link">arXiv:2510.21674</a>
@@ -375,5 +420,56 @@ function toggleMenu() {
 }
 </script>
 
+<script>
+(function () {
+  const banners = document.querySelectorAll(".banner-container");
+  if (!banners.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let ticking = false;
+
+  function updateBannerCentering() {
+    const header = document.querySelector(".topbar");
+    const headerBottom = header ? header.offsetHeight : 0;
+    const viewportBottom = window.innerHeight || document.documentElement.clientHeight;
+
+    banners.forEach(function (container) {
+      const image = container.querySelector(".banner");
+      if (!image) return;
+
+      const rect = container.getBoundingClientRect();
+      const visibleTop = Math.max(headerBottom, rect.top);
+      const visibleBottom = Math.min(viewportBottom, rect.bottom);
+
+      if (visibleBottom <= visibleTop) {
+        container.style.setProperty("--banner-center-shift", "0px");
+        return;
+      }
+
+      const visibleCenterInBanner = ((visibleTop + visibleBottom) / 2) - rect.top;
+      const bannerCenter = container.offsetHeight / 2;
+      const rawShift = visibleCenterInBanner - bannerCenter;
+
+      const hiddenTop = Math.max(0, visibleTop - rect.top);
+      const hiddenBottom = Math.max(0, rect.bottom - visibleBottom);
+      const shift = Math.max(-hiddenBottom, Math.min(hiddenTop, rawShift));
+
+      container.style.setProperty("--banner-center-shift", shift + "px");
+    });
+
+    ticking = false;
+  }
+
+  function requestBannerCentering() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateBannerCentering);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", requestBannerCentering, { passive: true });
+  window.addEventListener("resize", requestBannerCentering);
+  updateBannerCentering();
+})();
+</script>
 </body>
 </html>
